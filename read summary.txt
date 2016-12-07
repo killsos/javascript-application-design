@@ -1,0 +1,70 @@
+javascript web 应用开发
+
+REST 表现层状态转换
+
+eslint
+
+隔行扫描图像
+grunt
+imagemin
+  release{
+    files[
+      expand:true,
+      src
+    ],
+    option{
+      progressive:true //隔行扫描
+    }
+    }
+
+
+Expires为静态资源设置 缓存
+
+静态资源设置哈希值最好加到文件名
+动态资源设置哈希值最好设置为ETag
+
+ETag是标识资源特定版本唯一方式
+
+
+last-modified用于标识资源的最后修改时间
+同时设置cache-control是max-age
+
+
+ETag和cache-control:max-age一起形成柔和缓存策略,让客户端决定使用缓存的副本还是重新请求
+
+设置缓存方法
+1 ETag + cache-control:max-age
+2 last-modified + cache-control:max-age
+
+
+Cache-control设为private,所有中间设备不缓存,只有客户端可以缓存
+Cache-control设为public,中间设备可以缓存
+
+Exprise设为未来时间,但是有可能数据已经变化了
+
+Exprise的替代方案---条件请求
+
+last-modified + cache-control
+条件请求可以根据时间做判断,在响应中设置last-modified,此时最好在Cache-control中max-age属性
+就算修改日期没变,也会把缓存设为失效
+if-modified-since
+
+Cache-control + ETag
+if-None-Match
+如果if-None-Match中哈希值没变化就返回304
+
+
+
+请求限流
+服务器可以将请求限流
+
+
+
+pgrep node 查nodePID
+kill -s userName PID
+
+nodetime 性能分析
+
+搭建集群
+ cluster
+pm2
